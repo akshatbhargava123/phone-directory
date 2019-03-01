@@ -8,6 +8,9 @@ const Body = styled.div`
   margin: 8px auto;
   width: 50%;
   text-align: center;
+  @media (max-width: 640px) {
+    width: 100%;
+  }
 `;
 
 class App extends Component {

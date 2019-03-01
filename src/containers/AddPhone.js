@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -9,7 +10,7 @@ const SubHeading = styled.h4`
   font-size: 20px;
 `;
 
-export default class AddPhone extends Component {
+class AddPhone extends Component {
 
   constructor(props) {
     super(props);
@@ -18,15 +19,20 @@ export default class AddPhone extends Component {
       phone: ''
     };
     this.onInputChange = this.onInputChange.bind(this);
+    this.onAdd = this.onAdd.bind(this);
   }
 
   onInputChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onAdd() {
+    this.props.history.push('/');
+    if (this.props.onAdd) this.props.onAdd(this.state.name, this.state.phone);
+  }
+
   render() {
     const { name, phone } = this.state;
-    const { onAdd } = this.props;
 
     return (
       <div>
@@ -46,7 +52,7 @@ export default class AddPhone extends Component {
         <div>Phone: <b>{ phone }</b></div>
         <Button
           style={{ width: '90%', margin: '12px auto' }}
-          onClick={() => onAdd(name, phone)}
+          onClick={this.onAdd}
         >
           Confirm
         </Button>
@@ -54,3 +60,5 @@ export default class AddPhone extends Component {
     )
   }
 };
+
+export default withRouter(AddPhone);

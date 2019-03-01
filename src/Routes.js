@@ -6,7 +6,23 @@ import PhoneDirectory from './containers/PhoneDirectory';
 
 export default (props) => (
   <div>
-    <Route exact path="/" render={() => <PhoneDirectory phoneList={props.phoneList} />} />
-    <Route path="/add" render={() => <AddPhone onAdd={props.onAdd} />} />
+    <Route
+      exact
+      path="/"
+      render={() => (
+        <PhoneDirectory
+          phoneList={props.phoneList}
+          onDelete={props.onDelete}
+        />
+      )}
+    />
+    <Route
+      path="/add"
+      render={() => (
+        <AddPhone
+          onAdd={props.onAdd}
+        />
+      )}
+    />
   </div>
 );

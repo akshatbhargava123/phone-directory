@@ -6,7 +6,7 @@ import PhoneDirectory from './containers/PhoneDirectory';
 
 export default () => (
   <div>
-    <Route path="/" component={PhoneDirectory}/>
+    <Route exact path="/" component={PhoneDirectory}/>
     <Route path="/add" component={AddPhone} />
   </div>
 );

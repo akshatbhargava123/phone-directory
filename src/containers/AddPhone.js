@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 import Input from '../components/Input';
+import Button from '../components/Button';
 
 const SubHeading = styled.h4`
   color: black;
   font-weight: 300;
   font-size: 20px;
 `;
-
-
 
 export default class AddPhone extends Component {
 
@@ -27,6 +26,8 @@ export default class AddPhone extends Component {
 
   render() {
     const { name, phone } = this.state;
+    const { onAdd } = this.props;
+
     return (
       <div>
         <h1>Add New Phone Form</h1>
@@ -43,6 +44,12 @@ export default class AddPhone extends Component {
         <SubHeading>Subcriber to be added</SubHeading>
         <div>Name: <b>{ name }</b></div>
         <div>Phone: <b>{ phone }</b></div>
+        <Button
+          style={{ width: '90%', margin: '12px auto' }}
+          onClick={() => onAdd(name, phone)}
+        >
+          Confirm
+        </Button>
       </div>
     )
   }

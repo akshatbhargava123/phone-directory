@@ -19,9 +19,6 @@ const Button = styled.button`
   };
 `;
 
-export default ({ onClick, children, styles }) => (
-  <Button
-    onClick={onClick}
-    style={{ ...styles }}
-  >{ children }</Button>
+export default ({ children, ...props }) => (
+  <Button {...props}>{ children }</Button>
 );

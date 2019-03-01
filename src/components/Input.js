@@ -8,7 +8,7 @@ const Input = styled.input`
   outline: none;
   border: 1px solid grey;
   border-radius: 4px;
-  width: 54%;
+  width: 58%;
   transition: all 0.3s;
   &:focus {
     box-shadow: 1px 1px 1px 1px grey;

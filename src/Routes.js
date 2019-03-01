@@ -4,9 +4,9 @@ import { Route } from 'react-router-dom';
 import AddPhone from './containers/AddPhone';
 import PhoneDirectory from './containers/PhoneDirectory';
 
-export default () => (
+export default (props) => (
   <div>
-    <Route exact path="/" component={PhoneDirectory}/>
-    <Route path="/add" component={AddPhone} />
+    <Route exact path="/" render={() => <PhoneDirectory phoneList={props.phoneList} />} />
+    <Route path="/add" render={() => <AddPhone onAdd={props.onAdd} />} />
   </div>
 );

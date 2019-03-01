@@ -14,16 +14,31 @@ const Body = styled.div`
 `;
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      phoneList: []
+    };
+    this.onAdd = this.onAdd.bind(this);
+  }
+
+  onAdd(name, phone) {
+    this.setState({ phoneList: this.state.phoneList.concat({ name, phone }) });
+  }
+
   render() {
+    const { phoneList } = this.state;
     return (
       <div>
         <Header />
         <Body>
-          <Routes />
+          <Routes onAdd={this.onAdd} phoneList={phoneList} />
         </Body>
       </div>
     );
   }
+
 }
 
 export default App;

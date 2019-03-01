@@ -10,29 +10,39 @@ const SubHeading = styled.h4`
   font-size: 20px;
 `;
 
+const nameRegex = /^[A-Za-z]$/, phoneRegex = /^[0-9]{10}$/;
+
 class AddPhone extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      phone: ''
+      phone: '',
+      nameInputErrorous: false,
+      phonenputErrorous: false,
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onAdd = this.onAdd.bind(this);
   }
 
   onInputChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+      [`${name}InputErrorous`]: name === 'name' ? nameRegex.test(value) : !phoneRegex.test(value),
+    });
   }
 
   onAdd() {
+    const { name, phone } = this.state;
+    if (!nameRegex.test(name) || !phoneRegex.test(phone)) return;
     this.props.history.push('/');
-    if (this.props.onAdd) this.props.onAdd(this.state.name, this.state.phone);
+    if (this.props.onAdd) this.props.onAdd(name, phone);
   }
 
   render() {
-    const { name, phone } = this.state;
+    const { name, phone, nameInputErrorous, phonenputErrorous } = this.state;
 
     return (
       <div>
@@ -41,11 +51,13 @@ class AddPhone extends Component {
           placeholder="Enter Name"
           name="name"
           onChange={this.onInputChange}
+          error={nameInputErrorous}
         />
         <Input
           placeholder="Enter Phone"
           name="phone"
           onChange={this.onInputChange}
+          error={phonenputErrorous}
         />
         <SubHeading>Subcriber to be added</SubHeading>
         <div>Name: <b>{ name }</b></div>

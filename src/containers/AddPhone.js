@@ -68,6 +68,12 @@ class AddPhone extends Component {
         >
           Confirm
         </Button>
+        <Button
+          style={{ width: '90%', margin: '12px auto' }}
+          onClick={() => this.props.history.replace('/')}
+        >
+          Cancel
+        </Button>
       </div>
     )
   }

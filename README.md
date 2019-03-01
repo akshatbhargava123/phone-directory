@@ -1,6 +1,8 @@
 
 ## Phone Directory App
 
+[Hosted application link!](https://phone-directory-56651.firebaseapp.com/)
+
 ### Tech stack
 
 - React

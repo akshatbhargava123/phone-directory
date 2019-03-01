@@ -10,7 +10,7 @@ const SubHeading = styled.h4`
   font-size: 20px;
 `;
 
-const nameRegex = /^[A-Za-z]$/, phoneRegex = /^[0-9]{10}$/;
+const nameRegex = /^[A-Za-z]+$/, phoneRegex = /^[0-9]{10}$/;
 
 class AddPhone extends Component {
 
@@ -20,7 +20,7 @@ class AddPhone extends Component {
       name: '',
       phone: '',
       nameInputErrorous: false,
-      phonenputErrorous: false,
+      phoneInputErrorous: false,
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onAdd = this.onAdd.bind(this);
@@ -30,8 +30,8 @@ class AddPhone extends Component {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
-      [`${name}InputErrorous`]: name === 'name' ? nameRegex.test(value) : !phoneRegex.test(value),
-    });
+      [`${name}InputErrorous`]: name === 'name' ? !nameRegex.test(value) : !phoneRegex.test(value),
+    }, () => console.log(name, value, this.state[`${name}InputErrorous`]));
   }
 
   onAdd() {
@@ -42,7 +42,7 @@ class AddPhone extends Component {
   }
 
   render() {
-    const { name, phone, nameInputErrorous, phonenputErrorous } = this.state;
+    const { name, phone, nameInputErrorous, phoneInputErrorous } = this.state;
 
     return (
       <div>
@@ -57,7 +57,7 @@ class AddPhone extends Component {
           placeholder="Enter Phone"
           name="phone"
           onChange={this.onInputChange}
-          error={phonenputErrorous}
+          error={phoneInputErrorous}
         />
         <SubHeading>Subcriber to be added</SubHeading>
         <div>Name: <b>{ name }</b></div>

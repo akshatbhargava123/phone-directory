@@ -35,8 +35,10 @@ class AddPhone extends Component {
   }
 
   onAdd() {
-    const { name, phone } = this.state;
-    if (!nameRegex.test(name) || !phoneRegex.test(phone)) return;
+    const { name, phone, nameInputErrorous, phoneInputErrorous } = this.state;
+    if (nameInputErrorous || phoneInputErrorous) return;
+    if (name === '') return this.setState({ nameInputErrorous: true });
+    if (phone === '') return this.setState({ phoneInputErrorous: true });
     this.props.history.push('/');
     if (this.props.onAdd) this.props.onAdd(name, phone);
   }

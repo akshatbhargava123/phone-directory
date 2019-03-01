@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+
+import Routes from './Routes';
 import Header from './components/Header';
-import Button from './components/Button';
 
 const Body = styled.div`
   margin: 8px auto;
@@ -15,8 +16,7 @@ class App extends Component {
       <div>
         <Header />
         <Body>
-          <Button>Add New Phone Record</Button>
-          
+          <Routes />
         </Body>
       </div>
     );
